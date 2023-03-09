@@ -1,17 +1,17 @@
-const db = require("../config/connection");
-const { User } = require("../models");
+const pool = require("../config/db.js");
 const userSeeds = require("./userSeeds.json");
 
-db.once("open", async () => {
-	try {
-		await User.deleteMany({});
-		await User.create(userSeeds);
+console.log(userSeeds);
+async function doStuff(){
 
-		let users = await User.find();
-		console.log(users);
-		console.log("all done!");
-		process.exit(0);
-	} catch (err) {
-		throw err;
+	await pool.query("DROP TABLE users");
+	await pool.query('CREATE TABLE users(user_id SERIAL PRIMARY KEY, username VARCHAR(255),  password VARCHAR(255));')
+	userSeeds.forEach(async (entry) =>{
+		await pool.query(
+			"INSERT INTO users (username,password) VALUES($1,$2)",
+			[entry.username,entry.password])
 	}
-});
+	)
+	
+}
+doStuff()
