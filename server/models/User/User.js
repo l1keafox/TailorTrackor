@@ -23,13 +23,7 @@ const userSchema = new Schema(
 			required: true,
 			minlength: 5,
 		},
-		friends: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: "user",
-			},
-		],
-
+		
 		isAdmin: {
 			type: Boolean,
 			required: true,
