@@ -1,11 +1,26 @@
-import { gql } from "@apollo/client";
+import { gql } from "graphql-tag";
+export const TEST_QUERY = gql`
+query MyQuery {
+  query {
+    allUsers {
+      nodes {
+        username
+        userId
+        password
+        nodeId
+        adminlvl
+      }
+    }
+  }
+}
+`
 
 export const QUERY_USERS = gql`
   query allUsers {
     users {
-      _id
       username
-      email
+      userId
+      password
     }
   }
 `;

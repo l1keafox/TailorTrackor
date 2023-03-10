@@ -1,15 +1,18 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import client from "./../apollo-client"
-import { QUERY_USERS } from "./../utils/queries"
+import client from "../utils/apollo-client"
+import { TEST_QUERY } from "./../utils/queries"
 import { useEffect } from 'react';
 export default function Home() {
   
   useEffect(()=>{
     async function doCall (){
       try{
-        const {data,error} = await client.query({query:QUERY_USERS})
-        console.log(error,data)
+        
+        const {data,error} = await client.query({query:TEST_QUERY})
+        console.log(data,"Data?")
+
+
       }catch(err){
         console.log(err)
       }
