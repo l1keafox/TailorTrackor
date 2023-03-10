@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-
-
+import client from "./../apollo-client"
+import { QUERY_USERS } from "./../utils/queries"
 export default function Home() {
+  console.log(client,QUERY_USERS);
   return (
     <>
       <Head>

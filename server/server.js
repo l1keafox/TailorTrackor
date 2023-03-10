@@ -1,22 +1,11 @@
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+const { postgraphile } = require("postgraphile");
+
 
 const path = require('path');
-const { authMiddleware } = require('./utils/auth');
-
-const { typeDefs, resolvers } = require('./schemas');
-// const pool = require('./config/connection/db.js');
-
 const PORT = process.env.PORT || 3001;
-const app = express();
-const http = require("http");
-const ioServer = http.createServer(app);
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware,
-});
+const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -31,21 +20,23 @@ app.get('/', (req, res) => {
 });
 
 
-
+app.use(
+  postgraphile(
+    process.env.DATABASE_URL || "postgres://postgres:admin@localhost:5432/trackor",
+    "public",
+    {
+      watchPg: true,
+      graphiql: true,
+      enhanceGraphiql: true,
+    }
+  )
+);
 
 // Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async (typeDefs, resolvers) => {
-  await server.start();
-  server.applyMiddleware({ app });
-    ioServer.listen(PORT, () => { // IO port being opened.
+
+    app.listen(PORT, () => { 
       
       console.log(`  -API> API server running on port ${PORT}!`);
-      console.log(`  -GQL> Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-      console.log(`  -IO> Socket.io listening on http://localHost:${PORT}?`);
+      console.log(`  -GQL> Use GraphQL at http://localhost:${PORT}/graphiql`);
+      
     });
-  };
-  
-// Call the async function to start the server
-  startApolloServer(typeDefs, resolvers);
-  
-  
