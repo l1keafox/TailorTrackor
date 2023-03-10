@@ -2,23 +2,35 @@
   "name": "client2",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
+    "@apollo/react-components": "^4.0.0",
+    "@apollo/react-hoc": "^4.0.0",
+    "@apollo/react-hooks": "^4.0.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.12",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
-    "graphql": "^16.6.0",
+    "graphql": "^15.8.0",
     "jwt-decode": "^3.1.2",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/client-preset": "2.1.1"
   }
 }
