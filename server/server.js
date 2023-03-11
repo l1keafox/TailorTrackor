@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.use(
   postgraphile(
     process.env.DATABASE_URL || "postgres://postgres:admin@localhost:5432/trackor",
-    "public",
+    "learn",
     {
       watchPg: true,
       graphiql: true,
