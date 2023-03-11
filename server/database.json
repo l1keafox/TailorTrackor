@@ -1,0 +1,8 @@
+{
+  "dev":{
+    "driver":"pg",
+    "host":"localhost",
+    "database": "trackor"
+  }
+
+}
