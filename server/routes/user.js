@@ -28,8 +28,11 @@ router.post("/users/login/", async (req, res) => {
     const result = await bcrypt.compare(password, userQuery.rows[0].password);
     const user = userQuery.rows[0];
     if(result){
-      const id = user.user_id;
-      const token = jwt.sign({id},"scret",{
+      const {user_id,username} = user;
+      const token = jwt.sign({
+        user_id,
+        username
+      },"scret",{
         expiresIn: 300,
       })
       user.password = undefined

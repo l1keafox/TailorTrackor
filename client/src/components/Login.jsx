@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Auth from "../utils/auth";
-
+import { useDispatch } from "react-redux";
+import { login } from "./../features/userSlice"
 const Login = (props) => {
 
   const [formState, setFormState] = useState({ username: "cat", password: "catcat" });
   const [error, setError] = useState('');
   const [loggedIn, setLogin] = useState(false);
+  const dispatch = useDispatch();
+
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,7 +40,13 @@ const Login = (props) => {
       if(rpn.auth){
         setLogin(true);
         Auth.login(rpn.token);
+        dispatch(login({
+          user:rpn.user,
+          loggedIn:true
+      }))
+
       }
+
     // clear form values
     // setFormState({
     //   username: "",
