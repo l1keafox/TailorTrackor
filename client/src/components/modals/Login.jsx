@@ -39,7 +39,7 @@ const Login = (props) => {
         console.log("LOGIN TOKEN",rpn.token)
         Auth.login(rpn.token);
         dispatch(login(rpn.user))
-
+        props.doClose();
       }
 
     // clear form values
