@@ -7,14 +7,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const routes = require('./routes')
-for(let key in routes){
-	app.use(routes[key]);
-}
 //if you want in every domain then
-app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
+
+for(let key in routes){
+	app.use(routes[key]);
+}
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "../client/build")));

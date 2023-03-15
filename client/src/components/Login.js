@@ -3,7 +3,7 @@ import Auth from "../utils/auth";
 
 const Login = (props) => {
 
-  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [formState, setFormState] = useState({ username: "cat", password: "catcat" });
   const [error, setError] = useState('');
 
   // update state based on form input changes
@@ -19,12 +19,27 @@ const Login = (props) => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    const {password,username} = formState;
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ password, username })
+    // };
+    //   console.log(JSON.stringify({ password, username }));
+    // const rspnse = await fetch('/users/login/', requestOptions);
+    const rspnse = await fetch('http://localhost:3000/users/login/', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password, username })
+    });    
+    // const rpn = await rspnse.json();
+    console.log(rspnse);
+    
     // clear form values
-    setFormState({
-      username: "",
-      password: "",
-    });
+    // setFormState({
+    //   username: "",
+    //   password: "",
+    // });
   };
 
   return (
