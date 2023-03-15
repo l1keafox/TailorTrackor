@@ -1,25 +1,11 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import client from "../utils/apollo-client"
-import { TEST_QUERY } from "./../utils/queries"
-import { useEffect } from 'react';
+
+import Login from "../components/Login"
+
 export default function Home() {
   
-  useEffect(()=>{
-    async function doCall (){
-      try{
-        
-        const {data,error} = await client.query({query:TEST_QUERY})
-        console.log(data,"Data?")
 
-
-      }catch(err){
-        console.log(err)
-      }
-    }
-    doCall();
-  },[] )
-  
   return (
     <>
       <Head>
@@ -29,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        Hello World
+        <Login/>
       </main>
     </>
   )

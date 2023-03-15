@@ -1,19 +1,14 @@
 
-  # copyStack
+  # Tailor Tracktor
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-  This is an barebones MERNS stack app ready to be copied and built apon.
-
-  Tech used:
-  Mongoose/MongoDB/Apollo
+  Next 13 client
+  Postgres
   Express
-  React
   Node
-  Socket.io
-  
-  Login system already built in:
-  Json web tokens used.
+  PostGraphile
+  db-migrate
   
   ## Table of Contents 
   1.  [Usage](#Usage)
@@ -25,8 +20,8 @@
   
   ## Usage 
    Clone this repo.
-   Rename it and make sure it points to an new repo.
-   npm i to install depenancies.
+   Install postgres
+   
   
   ## Contributing 
   We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's: 

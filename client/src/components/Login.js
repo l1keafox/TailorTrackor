@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../utils/mutations";
-import { useExistingUserContext } from "../../utils/existingUserContext";
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const { toggleExistingUser, setLogin } = useExistingUserContext();
 
   const [formState, setFormState] = useState({ username: "", password: "" });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [error, setError] = useState('');
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -24,19 +19,7 @@ const Login = (props) => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // console.log(formState);
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.login.token);
-      toggleExistingUser(true);
-      setLogin(true);
-    } catch (e) {
-      console.error(e);
-    }
-
+    console.log(formState);
     // clear form values
     setFormState({
       username: "",
@@ -45,16 +28,12 @@ const Login = (props) => {
   };
 
   return (
-    <div className="loginCard">
-      <h4 className="loginCardTitle">User Login</h4>
-      {data ? (
-        <p>
-          Success! You may now head <Link to="/">back to the homepage.</Link>
-        </p>
-      ) : (
-        <form onSubmit={handleFormSubmit} className="loginFormContainer">
+    <div className="loginCard bg-slate-300">
+      <h4 className="loginCardTitle text-xl  m-2 p-1 ">User Login</h4>
+
+        <form onSubmit={handleFormSubmit} className="loginFormContainer flex flex-col">
           <input
-            className="loginFormInput"
+            className="loginFormInput m-2 p-1"
             placeholder="username"
             name="username"
             type="username"
@@ -62,7 +41,7 @@ const Login = (props) => {
             onChange={handleChange}
           />
           <input
-            className="loginFormInput"
+            className="loginFormInput  m-2 p-1"
             placeholder="******"
             name="password"
             type="password"
@@ -71,7 +50,7 @@ const Login = (props) => {
           />
           <button
             onClick={handleFormSubmit}
-            className="loginSubmitBtn"
+            className="loginSubmitBtn  m-2 p-1"
             style={{ cursor: "pointer" }}
             type="submit"
           >
@@ -86,11 +65,11 @@ const Login = (props) => {
               backgroundColor: "black",
             }}
           />
-          <button className="createNewAccountBtn" onClick={toggleExistingUser}>
+          {/* <button className="createNewAccountBtn" >
             Create Account 
-          </button>
+          </button> */}
         </form>
-      )}
+
 
       {error && (
         <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
