@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 import { useDispatch } from "react-redux";
-import { login } from "./../features/userSlice"
+import { login } from "../../features/userSlice"
 const Login = (props) => {
 
   const [formState, setFormState] = useState({ username: "cat", password: "catcat" });
   const [error, setError] = useState('');
-  const [loggedIn, setLogin] = useState(false);
   const dispatch = useDispatch();
 
   // update state based on form input changes
@@ -36,14 +35,10 @@ const Login = (props) => {
       body: JSON.stringify({ password, username })
     });    
      const rpn = await rspnse.json();
-      console.log(rpn);
       if(rpn.auth){
-        setLogin(true);
+        console.log("LOGIN TOKEN",rpn.token)
         Auth.login(rpn.token);
-        dispatch(login({
-          user:rpn.user,
-          loggedIn:true
-      }))
+        dispatch(login(rpn.user))
 
       }
 
@@ -67,9 +62,7 @@ const Login = (props) => {
     <div className="loginCard bg-slate-300">
       <h4 className="loginCardTitle text-xl  m-2 p-1 ">User Login</h4>
         <h1 className="bg-yellow">
-          {loggedIn && (
             <button onClick={checkAuth}> Check Login</button>
-          )}
         </h1>
 
         <form onSubmit={handleFormSubmit} className="loginFormContainer flex flex-col">

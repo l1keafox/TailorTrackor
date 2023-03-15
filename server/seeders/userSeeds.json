@@ -1,12 +1,20 @@
 [
-{
-    "username": "test",
-    "email": "test@test.com",
-    "password": "testtest"
-},
-{
+    {
+        "username": "ray",
+        "email": "ray@test.com",
+        "adminlevel":5,
+        "password": "rayray"
+    },
+    {
+        "username": "test",
+        "email": "test@test.com",
+        "adminlevel":1,
+        "password": "testtest"
+    },
+    {
     "username": "cat",
     "email": "cat@test.com",
+    "adminlevel":10,
     "password": "catcat"
 }
 

@@ -28,9 +28,10 @@ router.post("/users/login/", async (req, res) => {
     const result = await bcrypt.compare(password, userQuery.rows[0].password);
     const user = userQuery.rows[0];
     if(result){
-      const {user_id,username} = user;
+      const {user_id,username,adminlevel} = user;
       const token = jwt.sign({
         user_id,
+        adminlevel,
         username
       },"scret",{
         expiresIn: 300,
@@ -38,7 +39,7 @@ router.post("/users/login/", async (req, res) => {
       user.password = undefined
       res.json({auth:true, user, token});
     } else {
-      return res.status(401).send({ error: "Login Fail: password"+error });
+      return res.status(401).send({ error: `Login Fail: password ` });
     }
   }
 });
