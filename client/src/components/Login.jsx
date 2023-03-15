@@ -27,7 +27,7 @@ const Login = (props) => {
     // };
     //   console.log(JSON.stringify({ password, username }));
     // const rspnse = await fetch('/users/login/', requestOptions);
-    const rspnse = await fetch('http://localhost:3000/users/login/', {
+    const rspnse = await fetch('/api/users/login/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password, username })
@@ -36,7 +36,7 @@ const Login = (props) => {
       console.log(rpn);
       if(rpn.auth){
         setLogin(true);
-        localStorage.setItem("token",rpn.token);
+        Auth.login(rpn.token);
       }
     // clear form values
     // setFormState({
@@ -45,8 +45,9 @@ const Login = (props) => {
     // });
   };
   const checkAuth = async ()=>{
-    let token = localStorage.getItem("token")
-    const rspnse = await fetch('http://localhost:3000/users/auth/', {
+    let token = Auth.getToken()
+    
+    const rspnse = await fetch('/api/users/auth/', {
       headers: { "Content-Type": "application/json" ,
       "x-access-token":  token
     }});    

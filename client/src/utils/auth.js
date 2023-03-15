@@ -20,9 +20,6 @@ class AuthService {
 	}
 
 	login(idToken) {
-
-		console.log(idToken, "LOGGED IN?",decode(idToken));
-		
 		localStorage.setItem("id_token", idToken);
 	}
 
