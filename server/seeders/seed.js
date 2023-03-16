@@ -2,7 +2,6 @@ const pool = require("../config/db.js");
 const userSeeds = require("./userSeeds.json");
 const bcrypt = require("bcrypt");
 
-console.log(userSeeds);
 async function doStuff(){
 
 	console.log(' Dropping OLD Tables');
@@ -16,12 +15,14 @@ async function doStuff(){
 		adminlevel INT,
 		password VARCHAR(255));
 		`)
-		await pool.query(`CREATE TABLE tickets(
+	
+	await pool.query(`CREATE TABLE tickets(
 			ticket_id VARCHAR(16) PRIMARY KEY, 
 			status VARCHAR(50));
 			`)
 		
 	console.log(' Seeding Users Tables');
+
 	userSeeds.forEach(async (entry,index) =>{
 		const saltRounds = 4;
 		const password = await bcrypt.hash(entry.password, saltRounds);		
