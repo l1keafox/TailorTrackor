@@ -1,31 +1,33 @@
 {
   "name": "client2",
-  "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "version": "0.0.0",
+  "type": "module",
+  "proxy": "localhost:3001",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.12",
-    "eslint": "8.35.0",
-    "eslint-config-next": "13.2.3",
+    "@mui/material": "^5.11.13",
+    "@reduxjs/toolkit": "^1.9.3",
     "jwt-decode": "^3.1.2",
-    "next": "13.2.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "3.2.2",
-    "@graphql-codegen/client-preset": "2.1.1",
+    "@redux-devtools/core": "^3.13.1",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.1.0"
   }
 }

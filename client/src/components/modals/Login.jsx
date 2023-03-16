@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Auth from "../utils/auth";
-
+import Auth from "../../utils/auth";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/userSlice"
 const Login = (props) => {
 
   const [formState, setFormState] = useState({ username: "cat", password: "catcat" });
   const [error, setError] = useState('');
+  const dispatch = useDispatch();
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -27,24 +29,41 @@ const Login = (props) => {
     // };
     //   console.log(JSON.stringify({ password, username }));
     // const rspnse = await fetch('/users/login/', requestOptions);
-    const rspnse = await fetch('http://localhost:3000/users/login/', {
+    const rspnse = await fetch('/api/users/login/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password, username })
     });    
-    // const rpn = await rspnse.json();
-    console.log(rspnse);
-    
+     const rpn = await rspnse.json();
+      if(rpn.auth){
+        console.log("LOGIN TOKEN",rpn.token)
+        Auth.login(rpn.token);
+        dispatch(login(rpn.user))
+        props.doClose();
+      }
+
     // clear form values
     // setFormState({
     //   username: "",
     //   password: "",
     // });
   };
-
+  const checkAuth = async ()=>{
+    let token = Auth.getToken()
+    
+    const rspnse = await fetch('/api/users/auth/', {
+      headers: { "Content-Type": "application/json" ,
+      "x-access-token":  token
+    }});    
+    const rpn = await rspnse.json();
+    console.log(rpn);
+  }
   return (
     <div className="loginCard bg-slate-300">
       <h4 className="loginCardTitle text-xl  m-2 p-1 ">User Login</h4>
+        <h1 className="bg-yellow">
+            <button onClick={checkAuth}> Check Login</button>
+        </h1>
 
         <form onSubmit={handleFormSubmit} className="loginFormContainer flex flex-col">
           <input
@@ -80,11 +99,8 @@ const Login = (props) => {
               backgroundColor: "black",
             }}
           />
-          {/* <button className="createNewAccountBtn" >
-            Create Account 
-          </button> */}
+          
         </form>
-
 
       {error && (
         <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
