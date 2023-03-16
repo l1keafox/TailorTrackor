@@ -8,6 +8,7 @@ module.exports = (req,res,next) =>{
   } else {
     jwt.verify(token,"scret", (err,decoded) =>{
       if(err){
+        console.log("fail",err);
         res.json({auth:false,message:"Fail authenticate"});
       } else {
         req.userId = decoded.id;

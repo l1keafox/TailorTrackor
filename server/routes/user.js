@@ -34,7 +34,7 @@ router.post("/users/login/", async (req, res) => {
         adminlevel,
         username
       },"scret",{
-        expiresIn: 300,
+        expiresIn: 30000,
       })
       user.password = undefined
       res.json({auth:true, user, token});

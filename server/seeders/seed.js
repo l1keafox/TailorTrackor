@@ -17,7 +17,7 @@ async function doStuff(){
 		password VARCHAR(255));
 		`)
 		await pool.query(`CREATE TABLE tickets(
-			ticket_id SERIAL PRIMARY KEY, 
+			ticket_id VARCHAR(16) PRIMARY KEY, 
 			status VARCHAR(50));
 			`)
 		
