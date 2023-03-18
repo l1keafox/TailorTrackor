@@ -5,9 +5,9 @@ const pool = require("./../config/db");
 const { route } = require("./user");
 
 router.post('/ticket/create',auth,async(req,res)=>{
-  console.log(req.body);
   const { ticket_id } = req.body;
   try{
+
     const userQuery = await pool.query(`
     INSERT INTO tickets(ticket_id,status) 
     VALUES ('${ticket_id}','OPEN');
