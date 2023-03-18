@@ -12,7 +12,7 @@ function HomePage() {
 	const user = useSelector(selectUser);
 	const ticket = useSelector(selectTicket);
 	const [open, setOpen] = useState(false);
-	const [modalContent, changeModal] = useState(<CreateTicket />);
+	const [modalContent, changeModal] = useState(<CreateTicket doClose={() => setOpen(false)}/>);
 	function openModal() {
 		setOpen(true);
 	}
@@ -37,6 +37,8 @@ function HomePage() {
 				<Modal
 					open={open}
 					onClose={() => setOpen(false)}
+					
+
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description">
 					<Box>{modalContent ?? <div></div>}</Box>

@@ -1,9 +1,14 @@
 import {useState} from 'react'
 import TextField from '@mui/material/TextField';
 import auth from '../../utils/auth';
+import { useDispatch } from 'react-redux'; 
+import { setTicket } from '../../features/ticketSlice';
 
-const CreateTicket = () => {
+
+const CreateTicket = (prop) => {
   const [ticket,changeTicket] = useState('');
+  const dispatch = useDispatch();
+  console.log(prop)
   async function doCreate(evt){
     let token = auth.getToken()
     const ticket_id = ticket;
@@ -16,8 +21,12 @@ const CreateTicket = () => {
 		  }),
   });    
     const rpn = await rspnse.json();
-    console.log(rpn);
-
+    if(rpn.ticket_id == ticket_id){
+      console.log("CREATED");
+      console.log(rpn,"CREASTION");
+      dispatch(setTicket(rpn));
+      prop.doClose();
+    }
   }
   function handleChange(evt){
     changeTicket(evt.target.value);
