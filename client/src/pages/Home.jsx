@@ -22,11 +22,11 @@ function HomePage() {
   
 	console.log(user, ticket ," WHAT IS IT?");
 	return (
-		<div className="bg-green-200 h-[calc(100vh-75px)] p-3">
+		<div className="h-[calc(100vh-75px)] p-3">
 			{user ? (
 				<div className="flex items-center justify-center fixed bottom-0 m-5">
-					<button className="bg-slate-300 w-[10rem] p-3" onClick={openModal}>
-						Create Ticket
+					<button className="bg-slate-300 text-5xl h-[5rem] w-[5rem] p-3 text-center justify-center flex hover:scale-105" onClick={openModal}>
+						+
 					</button>
 				</div>
 			) : < div />
@@ -37,8 +37,6 @@ function HomePage() {
 				<Modal
 					open={open}
 					onClose={() => setOpen(false)}
-					
-
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description">
 					<Box>{modalContent ?? <div></div>}</Box>

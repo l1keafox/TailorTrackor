@@ -8,7 +8,6 @@ import { setTicket } from '../../features/ticketSlice';
 const CreateTicket = (prop) => {
   const [ticket,changeTicket] = useState('');
   const dispatch = useDispatch();
-  console.log(prop)
   async function doCreate(evt){
     let token = auth.getToken()
     const ticket_id = ticket;
@@ -22,8 +21,6 @@ const CreateTicket = (prop) => {
   });    
     const rpn = await rspnse.json();
     if(rpn.ticket_id == ticket_id){
-      console.log("CREATED");
-      console.log(rpn,"CREASTION");
       dispatch(setTicket(rpn));
       prop.doClose();
     }
@@ -32,9 +29,9 @@ const CreateTicket = (prop) => {
     changeTicket(evt.target.value);
   }
   return (
-    <div className = "bg-slate-50 flex flex-col justify-center items-center">
-      <TextField
-          className ='w-3/5'
+      <div className = "bg-slate-50 flex flex-col justify-center items-center h-[25rem] p-2 m-2 ">
+        <TextField
+          className ='w-3/5 p-2'
           id="Ticket-search"
           label="Ticket Number"
           type="search"
@@ -42,9 +39,9 @@ const CreateTicket = (prop) => {
           value = {ticket}
           onChange={handleChange}
         />
-        <button className='bg-green-100 p-2 text-2xl' onClick={doCreate}> Create</button>
+        <button className='bg-green-100 p-2 m-2 text-2xl' onClick={doCreate}> Create</button>
         Starting status will be "OPEN"
-    </div>
+      </div>
   )
 }
 

@@ -21,6 +21,26 @@ router.post('/ticket/create',auth,async(req,res)=>{
   }
 })
 
+router.post('/ticket/update',auth,async(req,res)=>{
+  const { ticket_id,status } = req.body;
+  try{
+    console.log(ticket_id,status,req.body);
+    const userQuery = await pool.query(`
+    UPDATE tickets
+    SET status = '${status}'
+    WHERE
+    ticket_id = '${ticket_id}';
+    `);
+    console.log(userQuery, "UPDATING");
+    res.json({ticket_id
+      ,status});
+  }catch(err){
+    console.log(err);
+    res.status(401);
+  }
+})
+
+
 // This does not authicate
 router.get('/ticket/:ticket_id',async(req,res)=>{
   console.log(req.params);
