@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("./../middleware/auth");
 const router = express.Router();
 const pool = require("./../config/db");
+const { route } = require("./user");
 
 router.post('/ticket/create',auth,async(req,res)=>{
   console.log(req.body);
@@ -17,6 +18,23 @@ router.post('/ticket/create',auth,async(req,res)=>{
   }catch(err){
     console.log(err);
     res.status(401);
+  }
+})
+
+// This does not authicate
+router.get('/ticket/:ticket_id',async(req,res)=>{
+  console.log(req.params);
+  const {ticket_id} = req.params;
+  try{  
+    const findTicket = await pool.query(`
+    SELECT * FROM tickets WHERE ticket_id = '${ticket_id}'
+    `);
+    console.log(findTicket.rows);
+    if(findTicket.rows.length){
+      res.json(findTicket.rows[0]);
+    }
+  }catch(err){
+    console.log(err);
   }
 })
 
