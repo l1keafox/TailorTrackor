@@ -37,18 +37,20 @@ const Ticket = (prop) => {
 	console.log(prop);
 	console.log(ticket, user);
 	return (
-		<div className="bg-yellow-100 p-2 m-2 border border-blue-300">
+		<div className="bg-[#F1D592] p-2 m-2 h-[50rem] ticket">
+			<div id="outer-circle" className="left-50">
+			</div>
 			{ticket ? (
 				<div>
-					<h1> Ticket Name: {ticket.ticket_id} </h1>
-					<h1> Status: {ticket.status} </h1>
+					{/* <h1 className="text-xl p-2"> Ticket Name: {ticket.ticket_id} </h1>
+					<h1 className="text-xl p-2"> Status: {ticket.status} </h1> */}
 				</div>
 			) : (
 				<div />
 			)}
 			{user && user.adminlevel >= 5 ? (
 				<div>
-          <div className ="flex"> 
+          <div className ="flex p-2"> 
 					<Box sx={{ minWidth: 120 }}>
 						<FormControl fullWidth>
 							<InputLabel id="demo-simple-select-label">Status</InputLabel>

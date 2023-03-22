@@ -59,10 +59,9 @@ const Login = (props) => {
     console.log(rpn);
   }
   return (
-    <div className="loginCard bg-slate-300">
+    <div className="loginCard bg-slate-300 m-2 p-2">
       <h4 className="loginCardTitle text-xl  m-2 p-1 ">User Login</h4>
         <h1 className="bg-yellow">
-            <button onClick={checkAuth}> Check Login</button>
         </h1>
 
         <form onSubmit={handleFormSubmit} className="loginFormContainer flex flex-col">
@@ -84,7 +83,7 @@ const Login = (props) => {
           />
           <button
             onClick={handleFormSubmit}
-            className="loginSubmitBtn  m-2 p-1"
+            className="loginSubmitBtn bg-slate-500 m-2 p-1"
             style={{ cursor: "pointer" }}
             type="submit"
           >

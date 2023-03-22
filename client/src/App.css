@@ -1,0 +1,12 @@
+.ticket{
+  clip-path: polygon(20% 0%, 80% 0%, 100% 12%, 100% 100%, 0 100%, 0 12%);
+}
+
+#outer-circle {
+  border:30px solid #9c362c;
+  border-radius:50%;
+  width:100px;
+  height:100px;
+  position: relative;
+  left:39%;
+}

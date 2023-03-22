@@ -15,7 +15,7 @@ import { Box } from "@mui/material";
 function Header() {
   const dispatch = useDispatch();
   // const [user,setUser] = useState({username:null,adminlevel:null});
-  const gettingUser = useSelector(selectUser);
+  const user = useSelector(selectUser);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const [modalContent, changeModal] = useState(null);
@@ -47,8 +47,8 @@ function Header() {
   }
 
   useEffect(() => {
-    // console.log('HEADER HAS USER:',gettingUser);
-    // setUser({ ...user, username: gettingUser.username, adminlevel: gettingUser.adminlevel })
+    // console.log('HEADER HAS USER:',user);
+    // setUser({ ...user, username: user.username, adminlevel: user.adminlevel })
   }, [])
   
   return (
@@ -65,7 +65,7 @@ function Header() {
           onChange = {doChange}
         />
         <button onClick={doSearch} className="w-1/5 bg-red-50"> Search </button>
-      {gettingUser ? <button onClick={showModal} data-btn="settings" className="w-1/5 bg-yellow-50"> Logout  </button> : <button onClick={showModal} data-btn="login" className="w-1/5 bg-yellow-50"> Login  </button>  }
+      {user ? <button onClick={showModal} data-btn="settings" className="w-1/5 bg-yellow-50"> {user.username}  </button> : <button onClick={showModal} data-btn="login" className="w-1/5 bg-yellow-50"> Login  </button>  }
       {/*  */}
       <Modal
             open={open}

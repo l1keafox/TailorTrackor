@@ -16,8 +16,12 @@ async function doStuff(){
 		password VARCHAR(255));
 		`)
 	
+		//last_updated 
+		// last_worker
+		
 	await pool.query(`CREATE TABLE tickets(
 			ticket_id VARCHAR(16) PRIMARY KEY, 
+			
 			status VARCHAR(50));
 			`)
 		
