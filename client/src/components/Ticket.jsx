@@ -75,7 +75,7 @@ const Ticket = (prop) => {
 					return (
 							<Box sx={{ minWidth: 120 }}>
 								<FormControl fullWidth>
-									<InputLabel id="demo-simple-select-label">Status</InputLabel>
+									<InputLabel id="demo-simple-select-label">{ticket.status}</InputLabel>
 									<Select
 										labelId="demo-simple-select-label"
 										id="demo-simple-select"
@@ -103,13 +103,13 @@ const Ticket = (prop) => {
 					<h1 className="text-xl font-bold  p-2 text-red-500 absolute left-12">
 						{ticket.ticket_id}
 					</h1>
-					<h1 className="text-xl font-bold  p-2 text-blue-500  absolute right-12 text-center"> Status: {getFieldByAdmin('status')} </h1>
+					<div className="text-xl font-bold  p-2 text-blue-500  absolute right-12 items-center flex"> Status: {getFieldByAdmin('status')} </div>
 				</>
 			) : (
 				<div />
 			)}
 			<div className=" top-[5rem] relative px-2">
-				<h1 className="text-center text-xl font-bold pb-8"> Store Name</h1>
+				<h1 className="text-center text-xl font-bold pb-8"> {user ? user : 'nothing' }</h1>
 				<div className="relative h-[30rem]">
 					<div className="flex justify-between items-center">
 						<h1 className="mb-2 text-xl"> Date: </h1> {getFieldByAdmin('date')} 

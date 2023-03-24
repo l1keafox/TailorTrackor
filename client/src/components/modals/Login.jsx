@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice"
 const Login = (props) => {
 
-  const [formState, setFormState] = useState({ username: "cat", password: "catcat" });
+  const [formState, setFormState] = useState({ username: "likeafox", password: "rayray" });
   const [error, setError] = useState('');
   const dispatch = useDispatch();
 
