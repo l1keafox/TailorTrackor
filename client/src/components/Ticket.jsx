@@ -43,11 +43,11 @@ const Ticket = (prop) => {
 	const { ticket } = prop;
 	const [status, setStatus] = React.useState(ticket.status);
 	const [date, setDate] = React.useState(dayjs(ticket.date_created));
-	const [name, setName] = React.useState("");
-	const [phone, setPhone] = React.useState("");
-	const [price, setPrice] = React.useState("");
-	const [doneBy, setDoneBy] = React.useState("");
-	const [remake, setRemake] = React.useState("");
+	const [name, setName] = React.useState(ticket.customer_name);
+	const [phone, setPhone] = React.useState(ticket.customer_phone);
+	const [price, setPrice] = React.useState(ticket.price);
+	const [doneBy, setDoneBy] = React.useState(dayjs(ticket.to_be_done));
+	const [remake, setRemake] = React.useState(ticket.remake);
 
 	// useEffect(()=>{
 	// 	console.log( )
@@ -69,7 +69,16 @@ const Ticket = (prop) => {
 		const rspnse = await fetch("/api/ticket/update/", {
 			method: "POST",
 			headers: { "Content-Type": "application/json", "x-access-token": token },
-			body: JSON.stringify({ ticket_id, status, date, price,name,phone,doneBy,remake }),
+			body: JSON.stringify({
+				ticket_id,
+				status,
+				date,
+				price,
+				name,
+				phone,
+				doneBy,
+				remake,
+			}),
 		});
 		const rpn = await rspnse.json();
 		dispatch(setTicket(rpn));
@@ -98,7 +107,6 @@ const Ticket = (prop) => {
 						onChange={(event) => {
 							return setPrice(event.target.value);
 						}}
-
 					/>
 				);
 			case "date":
@@ -111,13 +119,14 @@ const Ticket = (prop) => {
 					/>
 				);
 			case "done":
-				return <DatePicker 
-				value={doneBy}
-				onChange={(newValue) => {
-					return setDoneBy(newValue);
-				}}
-
-				/>;
+				return (
+					<DatePicker
+						value={doneBy}
+						onChange={(newValue) => {
+							return setDoneBy(newValue);
+						}}
+					/>
+				);
 			// return {ticket.date};
 			case "status":
 				if (user && user.adminlevel >= 5) {
@@ -133,9 +142,10 @@ const Ticket = (prop) => {
 									value={status}
 									label="Status"
 									onChange={handleChange}>
-									<MenuItem value={"Open"}>Open</MenuItem>
-									<MenuItem value={"Working On"}>Working On</MenuItem>
-									<MenuItem value={"Done"}>Done</MenuItem>
+									<MenuItem value={"OPEN"}>Open</MenuItem>
+									<MenuItem value={"NEW"}>New</MenuItem>
+									<MenuItem value={"WORK"}>Working On</MenuItem>
+									<MenuItem value={"DONE"}>Done</MenuItem>
 								</Select>
 							</FormControl>
 						</Box>
@@ -152,15 +162,19 @@ const Ticket = (prop) => {
 					/>
 				);
 			case "phone":
-				return <TextField 
-				value={phone}
-				onChange={(event) => setPhone(event.target.value) }
-/>;
+				return (
+					<TextField
+						value={phone}
+						onChange={(event) => setPhone(event.target.value)}
+					/>
+				);
 			case "remake":
-				return <TextField 
-				value={remake}
-				onChange={(event) => setRemake(event.target.value) }
-/>;
+				return (
+					<TextField
+						value={remake}
+						onChange={(event) => setRemake(event.target.value)}
+					/>
+				);
 		}
 		return <TextField />;
 	}

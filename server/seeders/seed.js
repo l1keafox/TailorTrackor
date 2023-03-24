@@ -41,7 +41,8 @@ async function doStuff(){
 			to_be_done TIMESTAMPTZ,
 			group_id VARCHAR(255), 
 			customer_name VARCHAR(64),
-			garment VARCHAR(64),
+			customer_phone BIGINT,
+			remake VARCHAR(64),
 			price INT,
 			paid BOOLEAN,
 			status VARCHAR(50));
