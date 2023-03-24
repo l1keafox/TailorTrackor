@@ -7,6 +7,9 @@ import Auth from "./utils/auth";
 import {useSelector, useDispatch} from "react-redux";
 import { selectUser, login } from "./features/userSlice";
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -19,8 +22,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header/>
-      <Home/>
+       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Header/>
+        <Home/>
+      </LocalizationProvider>
     </div>
   )
 }

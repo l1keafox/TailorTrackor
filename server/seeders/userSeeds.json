@@ -1,21 +1,43 @@
 [
     {
+        "username": "likeafox",
+        "email": "fox@test.com",
+        "adminlevel":11,
+        "group_name":"root",
+        "group_id":1,
+        "password": "rayray"
+    },
+    {
         "username": "ray",
         "email": "ray@test.com",
+        "group_name":"ripstop",
+        "group_id":"2",
         "adminlevel":5,
         "password": "rayray"
     },
     {
+        "username": "jim",
+        "email": "jim@aoe.com",
+        "group_name":"ripstop",
+        "group_id":"2",
+        "adminlevel":5,
+        "password": "jimaoe"
+    },
+    {
         "username": "test",
         "email": "test@test.com",
+        "group_name":"ripstop",
+        "group_id":"2",
         "adminlevel":1,
         "password": "testtest"
     },
     {
     "username": "cat",
     "email": "cat@test.com",
-    "adminlevel":10,
+    "group_name":"ripstop",
+    "group_id":"2",
+    "adminlevel":1,
     "password": "catcat"
-}
+    }
 
 ]

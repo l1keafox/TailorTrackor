@@ -12,6 +12,8 @@ module.exports = (req,res,next) =>{
         res.json({auth:false,message:"Fail authenticate"});
       } else {
         req.userId = decoded.id;
+        // adding decoded information to request as a session information here.
+        req.session = decoded;
         next();
       }
     })
