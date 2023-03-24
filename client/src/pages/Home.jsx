@@ -31,7 +31,7 @@ function HomePage() {
 				</div>
 			) : < div />
 			}
-      {ticket ? <Ticket ticket={ticket}/> : <div/> }
+      {ticket ? <Ticket ticket={ticket} /> : <div/> }
 
 			<div>
 				<Modal
