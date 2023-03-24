@@ -66,7 +66,10 @@ const Ticket = (prop) => {
 		console.log("ADMIN LVL",user ? user.adminlevel : 0," TICK STATUS:",ticket.status,DEFAULT_ATTRIBUTE);
 		switch(data){
 			case 'date':
-			return (<TextField/>)
+				if(ticket && ticket.status){
+					return (<TextField/>)
+				}
+				// return {ticket.date};
 			case 'status':
 				if(user && user.adminlevel >= 5){
 					return (

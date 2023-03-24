@@ -1,21 +1,38 @@
 [
     {
+        "username": "likeafox",
+        "email": "fox@test.com",
+        "adminlevel":11,
+        "store_name":"root",
+        "password": "rayray"
+    },
+    {
         "username": "ray",
         "email": "ray@test.com",
+        "store_name":"ripstop",
         "adminlevel":5,
         "password": "rayray"
     },
     {
+        "username": "jim",
+        "email": "jim@aoe.com",
+        "store_name":"ripstop",
+        "adminlevel":5,
+        "password": "jimaoe"
+    },
+    {
         "username": "test",
         "email": "test@test.com",
+        "store_name":"ripstop",
         "adminlevel":1,
         "password": "testtest"
     },
     {
     "username": "cat",
     "email": "cat@test.com",
-    "adminlevel":10,
+    "store_name":"ripstop",
+    "adminlevel":1,
     "password": "catcat"
-}
+    }
 
 ]

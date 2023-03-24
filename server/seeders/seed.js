@@ -29,7 +29,12 @@ async function doStuff(){
 		
 	await pool.query(`CREATE TABLE tickets(
 			ticket_id VARCHAR(16) PRIMARY KEY, 
-			
+			date_created DATE NOT NULL,
+			to_be_done DATE,
+			customer_name VARCHAR(64),
+			garment VARCHAR(64),
+			price INT,
+			paid BOOLEAN,
 			status VARCHAR(50));
 			`)
 		
