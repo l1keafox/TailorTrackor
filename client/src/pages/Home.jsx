@@ -24,7 +24,7 @@ function HomePage() {
 	return (
 		<div className="h-[calc(100vh-75px)] p-3">
 			{user ? (
-				<div className="flex items-center justify-center fixed bottom-0 m-5">
+				<div className="flex items-center justify-center fixed bottom-0 m-5 z-50">
 					<button className="bg-slate-300 text-5xl h-[5rem] w-[5rem] p-3 text-center justify-center flex hover:scale-105" onClick={openModal}>
 						+
 					</button>

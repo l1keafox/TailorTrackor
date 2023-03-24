@@ -40,7 +40,7 @@ const CreateTicket = (prop) => {
           onChange={handleChange}
         />
         <button className='bg-green-100 p-2 m-2 text-2xl' onClick={doCreate}> Create</button>
-        Starting status will be "OPEN"
+        Starting status will be "NEW"
       </div>
   )
 }

@@ -8,5 +8,5 @@
   width:100px;
   height:100px;
   position: relative;
-  left:39%;
+  left: calc(50% - 50px);
 }

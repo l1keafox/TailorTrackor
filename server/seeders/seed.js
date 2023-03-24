@@ -12,12 +12,20 @@ async function doStuff(){
 	await pool.query(`CREATE TABLE users(
 		user_id SERIAL PRIMARY KEY, 
 		username VARCHAR(255),
+		store_name VARCHAR(255),
 		adminlevel INT,
 		password VARCHAR(255));
 		`)
 	
-		//last_updated 
+		// date_created
+		// to_be_done
+		// customer_name
+		// garment
+		// price
+		// Paid or not.
+
 		// last_worker
+		// last_updated 
 		
 	await pool.query(`CREATE TABLE tickets(
 			ticket_id VARCHAR(16) PRIMARY KEY, 

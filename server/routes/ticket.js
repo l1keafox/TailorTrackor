@@ -10,11 +10,11 @@ router.post('/ticket/create',auth,async(req,res)=>{
 
     const userQuery = await pool.query(`
     INSERT INTO tickets(ticket_id,status) 
-    VALUES ('${ticket_id}','OPEN');
+    VALUES ('${ticket_id}','NEW');
     `);
     console.log(userQuery)
     res.json({ticket_id
-      ,status:'OPEN'});
+      ,status:'NEW'});
   }catch(err){
     console.log(err);
     res.status(401);
