@@ -97,6 +97,7 @@ const Ticket = (prop) => {
 		// );
 		switch (data) {
 			case "price":
+				if (user && user.adminlevel >= 5) {
 				return (
 					<OutlinedInput
 						id="outlined-adornment-amount"
@@ -108,8 +109,11 @@ const Ticket = (prop) => {
 							return setPrice(event.target.value);
 						}}
 					/>
-				);
+				)} else {
+					return ( <h1> { price } </h1>)
+				}
 			case "date":
+				if (user && user.adminlevel >= 5) {
 				return (
 					<DatePicker
 						value={date}
@@ -118,7 +122,11 @@ const Ticket = (prop) => {
 						}}
 					/>
 				);
+					} else {
+						return ( <h1> { date.$M+1 }/{ date.$D } </h1>)
+					}
 			case "done":
+				if (user && user.adminlevel >= 5) {
 				return (
 					<DatePicker
 						value={doneBy}
@@ -126,7 +134,9 @@ const Ticket = (prop) => {
 							return setDoneBy(newValue);
 						}}
 					/>
-				);
+				)} else {
+					return ( <h1> { doneBy.$M+1 }/{ doneBy.$D } </h1>)
+				}
 			// return {ticket.date};
 			case "status":
 				if (user && user.adminlevel >= 5) {
@@ -153,28 +163,40 @@ const Ticket = (prop) => {
 				}
 				return ticket.status;
 			case "name":
-				return (
-					<TextField
-						value={name}
-						onChange={(event) => {
-							return setName(event.target.value);
-						}}
-					/>
-				);
+				if (user && user.adminlevel >= 5) {
+					return (
+						<TextField
+							value={name}
+							onChange={(event) => {
+								return setName(event.target.value);
+							}}
+						/>
+					);
+				} else {
+					return ( <h1> {name } </h1>)
+				}
 			case "phone":
-				return (
-					<TextField
-						value={phone}
-						onChange={(event) => setPhone(event.target.value)}
-					/>
-				);
+				if (user && user.adminlevel >= 5) {
+					return (
+						<TextField
+							value={phone}
+							onChange={(event) => setPhone(event.target.value)}
+						/>
+					);
+				} else {
+					return ( <h1> {phone } </h1>)
+				}
 			case "remake":
-				return (
-					<TextField
-						value={remake}
-						onChange={(event) => setRemake(event.target.value)}
-					/>
-				);
+				if (user && user.adminlevel >= 5) {
+					return (
+						<TextField
+							value={remake}
+							onChange={(event) => setRemake(event.target.value)}
+						/>
+					);
+				}else {
+					return ( <h1> {remake } </h1>)
+				}
 		}
 		return <TextField />;
 	}
