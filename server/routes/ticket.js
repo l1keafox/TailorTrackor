@@ -44,10 +44,10 @@ router.post('/ticket/update',auth,async(req,res)=>{
       query += `remake = '${remake}',`;
     }
     if(price){
-      query += `price = '${price}',`;
+      query += `price = ${parseInt(price).toFixed(2)},`;
     }
     if(phone){
-      query += `customer_phone = ${phone},`;
+      query += `customer_phone = '${phone}',`;
     }
     String.prototype.replaceLast = function (search, replace) {
       return this.replace(new RegExp(search+"([^"+search+"]*)$"), replace+"$1");
@@ -56,7 +56,7 @@ router.post('/ticket/update',auth,async(req,res)=>{
     console.log(query);
 
     const userQuery = await pool.query(query);
-    console.log(userQuery, "UPDATING");
+    // console.log(userQuery, "UPDATING");
     res.json({ticket_id, status, date, price,name,phone,doneBy,remake});
   }catch(err){
     console.log(err);

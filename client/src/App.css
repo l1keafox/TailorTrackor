@@ -10,3 +10,7 @@
   position: relative;
   left: calc(50% - 50px);
 }
+
+body{
+  background-color: rgba(24, 24, 24, 1);
+}

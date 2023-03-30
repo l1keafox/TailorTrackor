@@ -7,7 +7,15 @@ import Auth from "./../utils/auth"
 import TextField from '@mui/material/TextField';
 import Login from "./modals/Login";
 import UserSettings from "./modals/UserSettings";
-
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import DirectionsIcon from '@mui/icons-material/Directions';
+import LoginIcon from '@mui/icons-material/Login';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import Modal from "@mui/material/Modal";
 import { Box } from "@mui/material";
@@ -28,6 +36,10 @@ function Header() {
       changeModal(<Login doClose={handleClose}/>);
       setOpen(true);
     }
+  }
+  function showSetting(evt){
+      changeModal(<UserSettings doClose={handleClose}/>);
+      setOpen(true);
   }
 
   async function doSearch(evt){
@@ -52,21 +64,34 @@ function Header() {
   }, [])
   
   return (
-    <div className='flex'>
+    <div className='flex flex-col'>
       {/* <h1> Welcome! <span> {user.username} </span></h1>
       <h2> AdminLevel: {user.adminlevel} </h2> */}
-        <TextField
-          className ='w-3/5'
-          id="Ticket-search"
-          label="Ticket Number"
-          type="search"
-          variant="filled"
-          value = {search}
-          onChange = {doChange}
-        />
-        <button onClick={doSearch} className="w-1/5 bg-red-50"> Search </button>
-      {user ? <button onClick={showModal} data-btn="settings" className="w-1/5 bg-yellow-50"> {user.username}  </button> : <button onClick={showModal} data-btn="login" className="w-1/5 bg-yellow-50"> Login  </button>  }
-      {/*  */}
+      <Paper
+        component="form"
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+        >
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Enter Ticket Number"
+        inputProps={{ 'aria-label': 'search google maps' }}
+        value = {search}
+        onChange = {doChange}
+      />
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={doSearch}>
+        <SearchIcon />
+      </IconButton>
+      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+      {user ? 
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={showSetting} data-btn="settings">
+      <SettingsIcon />
+    </IconButton>
+    :   
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={showModal}  data-btn="login">
+        <LoginIcon />
+      </IconButton>
+      }
+    </Paper>      
       <Modal
             open={open}
             onClose={handleClose}
