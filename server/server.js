@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+require('dotenv').config({path:__dirname+'/.env'})
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 
@@ -15,7 +15,7 @@ app.use(express.json());
 for(let key in routes){
 	app.use(routes[key]);
 }
-
+console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "../client/dist")));
 }
