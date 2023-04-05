@@ -27,7 +27,8 @@ async function doStuff(){
 	
 
 	console.log(' Creating New Tables users');
-	await pool.query(`CREATE TABLE users(
+	await pool.query(`
+		CREATE TABLE users(
 		user_id SERIAL PRIMARY KEY, 
 		username VARCHAR(255),
 		group_id INT,
@@ -35,15 +36,16 @@ async function doStuff(){
 		password VARCHAR(255));
 		`)
 		
-	await pool.query(`CREATE TABLE tickets(
+	await pool.query(`
+			CREATE TABLE tickets(
 			ticket_id VARCHAR(16) PRIMARY KEY NOT NULL, 
 			date_created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 			to_be_done TIMESTAMPTZ,
 			group_id VARCHAR(255), 
 			customer_name VARCHAR(64),
-			customer_phone BIGINT,
+			customer_phone VARCHAR(64),
 			remake VARCHAR(64),
-			price INT,
+			price DECIMAL,
 			paid BOOLEAN,
 			status VARCHAR(50));
 			`)
