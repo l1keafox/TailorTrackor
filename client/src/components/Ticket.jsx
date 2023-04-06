@@ -43,7 +43,7 @@ AdminLevel of the user - Determine how much they can change.
 const Ticket = (prop) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
-
+	const apiData = location.protocol === "https:" ? `` : `/api`;
 	const { ticket } = prop;
 	const [status, setStatus] = React.useState(ticket.status);
 	const [date, setDate] = React.useState(dayjs(ticket.date_created));
@@ -72,7 +72,7 @@ const Ticket = (prop) => {
 		// console.log(ticket_id, "UPDATING TOO");
 
 		let token = Auth.getToken();
-		const rspnse = await fetch("/api/ticket/update/", {
+		const rspnse = await fetch(apiData+"/ticket/update/", {
 			method: "POST",
 			headers: { "Content-Type": "application/json", "x-access-token": token },
 			body: JSON.stringify({

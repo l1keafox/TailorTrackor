@@ -18,6 +18,7 @@ function App() {
       const user = Auth.getUser();
       dispatch( login( user ) )
     }
+
   },[])
 
   return (

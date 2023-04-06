@@ -6,12 +6,13 @@ import { setTicket } from '../../features/ticketSlice';
 
 
 const CreateTicket = (prop) => {
+  const apiData = location.protocol === "https:" ? `` : `/api`;
   const [ticket,changeTicket] = useState('');
   const dispatch = useDispatch();
   async function doCreate(evt){
     let token = auth.getToken()
     const ticket_id = ticket;
-    const rspnse = await fetch('/api/ticket/create/', {
+    const rspnse = await fetch(apiData+'/ticket/create/', {
       method: "POST",
       headers: { "Content-Type": "application/json" ,
         "x-access-token":  token },		

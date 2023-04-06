@@ -3,6 +3,7 @@ import Auth from "../../utils/auth";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice"
 const Login = (props) => {
+  const apiData = location.protocol === "https:" ? `` : `/api`;
 
   const [formState, setFormState] = useState({ username: "likeafox", password: "rayray" });
   const [error, setError] = useState('');
@@ -29,7 +30,7 @@ const Login = (props) => {
     // };
     //   console.log(JSON.stringify({ password, username }));
     // const rspnse = await fetch('/users/login/', requestOptions);
-    const rspnse = await fetch('/users/login/', {
+    const rspnse = await fetch(apiData+'/users/login/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password, username })
@@ -51,7 +52,7 @@ const Login = (props) => {
   const checkAuth = async ()=>{
     let token = Auth.getToken()
     
-    const rspnse = await fetch('/api/users/auth/', {
+    const rspnse = await fetch(apiData+'/users/auth/', {
       headers: { "Content-Type": "application/json" ,
       "x-access-token":  token
     }});    

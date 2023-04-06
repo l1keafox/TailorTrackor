@@ -23,6 +23,7 @@ import { Box } from "@mui/material";
 function Header() {
   const dispatch = useDispatch();
   // const [user,setUser] = useState({username:null,adminlevel:null});
+  const apiData = location.protocol === "https:" ? `` : `/api`;
   const user = useSelector(selectUser);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
@@ -45,7 +46,7 @@ function Header() {
   async function doSearch(evt){
     let token = Auth.getToken()
     console.log('Serach butn requested',evt.target,search);
-    const rspnse = await fetch(`/ticket/${search}`, {
+    const rspnse = await fetch(apiData+`/ticket/${search}`, {
       headers: { "Content-Type": "application/json" ,
       "x-access-token":  token
     }});    
