@@ -24,9 +24,11 @@ router.post("/users/login/", async (req, res) => {
   if(userQuery.rows.length == 0){
     return res.status(401).send({ error: "Error: No username, Create Account" });
   }
+  console.log('Trying to login',username,userQuery.rows.length,userQuery.rows[0].password );
   if(userQuery.rows.length){
     const result = await bcrypt.compare(password, userQuery.rows[0].password);
     const user = userQuery.rows[0];
+    console.log(result);
     if(result){
       const {user_id,username,adminlevel} = user;
       const token = jwt.sign({
@@ -37,6 +39,7 @@ router.post("/users/login/", async (req, res) => {
         expiresIn: 30000,
       })
       user.password = undefined
+      console.log(user,token);
       res.json({auth:true, user, token});
     } else {
       return res.status(401).send({ error: `Login Fail: password ` });

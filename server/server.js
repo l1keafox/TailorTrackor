@@ -12,14 +12,14 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-for(let key in routes){
-	app.use(routes[key]);
-}
 console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "../client/dist")));
 }
 
+for(let key in routes){
+	app.use(routes[key]);
+}
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });

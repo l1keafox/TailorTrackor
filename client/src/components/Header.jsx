@@ -51,7 +51,7 @@ function Header() {
     }});    
     const rpn = await rspnse.json();
     console.log(rpn);    
-     dispatch(setTicket(rpn))
+    dispatch(setTicket(rpn))
 
   }
   function doChange(evt){
