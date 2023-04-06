@@ -8,9 +8,8 @@
 //   port:  process.env.PGPORT ??  5432,
 //   password:  process.env.PGPASSWORD ??  "admin"
 // });
-
+require('dotenv').config({path:__dirname+'/../.env'})
 const { Client } = require('pg');
-
 const pool = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {

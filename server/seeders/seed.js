@@ -1,3 +1,4 @@
+require('dotenv').config({path:__dirname+'/.env'})
 const pool = require("../config/db.js");
 const userSeeds = require("./userSeeds.json");
 const bcrypt = require("bcrypt");
