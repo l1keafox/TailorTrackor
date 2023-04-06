@@ -29,7 +29,7 @@ const Login = (props) => {
     // };
     //   console.log(JSON.stringify({ password, username }));
     // const rspnse = await fetch('/users/login/', requestOptions);
-    const rspnse = await fetch('/api/users/login/', {
+    const rspnse = await fetch('/users/login/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password, username })

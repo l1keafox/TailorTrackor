@@ -45,7 +45,7 @@ function Header() {
   async function doSearch(evt){
     let token = Auth.getToken()
     console.log('Serach butn requested',evt.target,search);
-    const rspnse = await fetch(`/api/ticket/${search}`, {
+    const rspnse = await fetch(`/ticket/${search}`, {
       headers: { "Content-Type": "application/json" ,
       "x-access-token":  token
     }});    

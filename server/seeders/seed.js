@@ -53,14 +53,20 @@ async function doStuff(){
 		
 	console.log(' Seeding Users Tables');
 
-	userSeeds.forEach(async (entry,index) =>{
+	//userSeeds.forEach(async (entry,index) =>{
 		const saltRounds = 4;
+		for(let index in userSeeds){
+			const entry = userSeeds[index];
 		const password = await bcrypt.hash(entry.password, saltRounds);		
+		console.log("ADDING...");
 		await pool.query(
 			"INSERT INTO users (username,password,adminlevel, group_id) VALUES($1,$2,$3,$4)",
 			[entry.username, password, entry.adminlevel, entry.group_id ])
+			console.log("  DOne...")
+
+		//})
 		}
-	)
+	
 	
 }
 doStuff()
